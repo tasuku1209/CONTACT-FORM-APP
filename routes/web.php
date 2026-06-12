@@ -27,5 +27,9 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/contacts/{contact}', [AdminController::class, 'destroy'])
         ->name('admin.destroy');
     Route::resource('admin/tags', TagController::class)
-        ->only(['store']);
+        ->only([
+            'store',
+            'edit',
+            'update',
+        ]);
 });
