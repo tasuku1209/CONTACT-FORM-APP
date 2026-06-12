@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 // (一般側)ルート　bladeはurl直打ちですが、一応ルート名設定
@@ -25,4 +26,6 @@ Route::middleware(['auth'])->group(function () {
         ->name('admin.show');
     Route::delete('/admin/contacts/{contact}', [AdminController::class, 'destroy'])
         ->name('admin.destroy');
+    Route::resource('admin/tags', TagController::class)
+        ->only(['store']);
 });
