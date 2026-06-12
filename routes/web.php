@@ -5,7 +5,6 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
-// (一般側)ルート　bladeはurl直打ちですが、一応ルート名設定
 Route::get('/', [ContactController::class, 'index'])
     ->name('contacts.index');
 
