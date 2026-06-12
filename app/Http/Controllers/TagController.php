@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTagRequest;
+use App\Http\Requests\UpdateTagRequest;
 use App\Models\Tag;
 
 class TagController extends Controller
@@ -16,14 +17,18 @@ class TagController extends Controller
         return redirect('/admin');
     }
 
-    public function edit(string $id)
+    public function edit(Tag $tag)
     {
-        //
+        return view('admin.tags.edit', compact('tag'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(UpdateTagRequest $request, Tag $tag)
     {
-        //
+        $tag->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect('/admin');
     }
 
     public function destroy(string $id)
