@@ -31,5 +31,6 @@ Route::middleware(['auth'])->group(function () {
             'store',
             'edit',
             'update',
+            'destroy',
         ]);
 });
