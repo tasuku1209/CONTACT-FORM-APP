@@ -61,7 +61,6 @@ class AdminController extends Controller
     {
         $contact->delete();
 
-        return redirect('/admin')
-            ->with('success', 'お問い合わせを削除しました');
+        return redirect('/admin');
     }
 }
