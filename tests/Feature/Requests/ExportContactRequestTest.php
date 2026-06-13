@@ -11,7 +11,7 @@ class ExportContactRequestTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_有効な検索条件で_cs_vエクスポートできる(): void
+    public function test_有効な検索条件で_csvエクスポートできる(): void
     {
         // Arrange
         $user = User::factory()->create();
@@ -48,7 +48,7 @@ class ExportContactRequestTest extends TestCase
         ]);
     }
 
-    public function test_存在しないカテゴリ_i_dはバリデーションエラーになる(): void
+    public function test_存在しないカテゴリ_idはバリデーションエラーになる(): void
     {
         // Arrange
         $user = User::factory()->create();

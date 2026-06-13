@@ -12,7 +12,7 @@ class ContactControllerExportTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_認証ユーザーは条件付きで_cs_vをダウンロードできる(): void
+    public function test_認証ユーザーは条件付きで_csvをダウンロードできる(): void
     {
         // Arrange
         $user = User::factory()->create();
@@ -104,7 +104,7 @@ class ContactControllerExportTest extends TestCase
         $this->assertStringNotContainsString('カテゴリB', $content);
     }
 
-    public function test_フィルタ未指定時は新着順で_cs_v出力される(): void
+    public function test_フィルタ未指定時は新着順で_csv出力される(): void
     {
         // Arrange
         $user = User::factory()->create();
