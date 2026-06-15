@@ -24,10 +24,9 @@ class StoreContactRequestTest extends TestCase
             'email' => 'test@example.com',
             'tel' => '09012345678',
             'address' => '東京都渋谷区1-1-1',
-            'building' => 'テストビル',
             'category_id' => $category->id,
             'detail' => 'お問い合わせ内容です',
-            'tags' => $tags->pluck('id')->toArray(),
+            'tag_ids' => $tags->pluck('id')->toArray(),
         ]);
 
         $response->assertSessionHasNoErrors();
@@ -46,7 +45,6 @@ class StoreContactRequestTest extends TestCase
             'email' => 'test@example.com',
             'tel' => 'abc123',
             'address' => '東京都渋谷区1-1-1',
-            'building' => 'テストビル',
             'category_id' => $category->id,
             'detail' => 'お問い合わせ内容です',
         ]);
