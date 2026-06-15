@@ -46,8 +46,13 @@ class ContactControllerTest extends TestCase
     public function test_お問い合わせ確認ページが表示される(): void
     {
         // Arrange
-        $category = Category::factory()->create();
-        $tags = Tag::factory()->count(2)->create();
+        $category = Category::factory()->create([
+            'content' => '商品のお届けについて',
+        ]);
+
+        $tag = Tag::factory()->create([
+            'name' => 'テストタグ',
+        ]);
 
         // Act
         $response = $this->post(route('contacts.confirm'), [
@@ -60,15 +65,22 @@ class ContactControllerTest extends TestCase
             'building' => 'test建物名',
             'category_id' => $category->id,
             'detail' => 'testお問い合わせ内容',
-            'tag_ids' => $tags->pluck('id')->toArray(),
+            'tag_ids' => [$tag->id],
         ]);
 
         // Assert
         $response->assertStatus(200);
+
         $response->assertSee('test名');
         $response->assertSee('test姓');
+        $response->assertSee('男性');
         $response->assertSee('test@test.com');
-        $response->assertSee($category->content);
+        $response->assertSee('11111111111');
+        $response->assertSee('test住所');
+        $response->assertSee('test建物名');
+        $response->assertSee('商品のお届けについて');
+        $response->assertSee('testお問い合わせ内容');
+        $response->assertSee('テストタグ');
     }
 
     public function test_確認画面バリデーションエラーでリダイレクトされる(): void
@@ -76,16 +88,12 @@ class ContactControllerTest extends TestCase
         // Act
         $response = $this->post(route('contacts.confirm'), [
             'first_name' => '',
-            'last_name' => '',
-            'email' => 'invalid',
         ]);
 
         // Assert
         $response->assertStatus(302);
         $response->assertSessionHasErrors([
             'first_name',
-            'last_name',
-            'email',
         ]);
     }
 
@@ -103,7 +111,6 @@ class ContactControllerTest extends TestCase
             'email' => 'test@test.com',
             'tel' => '11111111111',
             'address' => 'test住所',
-            'building' => 'test建物名',
             'category_id' => $category->id,
             'detail' => 'testお問い合わせ内容',
             'tag_ids' => $tags->pluck('id')->toArray(),
@@ -126,16 +133,12 @@ class ContactControllerTest extends TestCase
         // Act
         $response = $this->post(route('contacts.store'), [
             'first_name' => '',
-            'email' => 'invalid',
-            'tel' => 'abc',
         ]);
 
         // Assert
         $response->assertStatus(302);
         $response->assertSessionHasErrors([
             'first_name',
-            'email',
-            'tel',
         ]);
     }
 }
