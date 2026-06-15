@@ -78,8 +78,8 @@ class ContactController extends Controller
         $contact->load(['category', 'tags']);
 
         return (new ContactResource($contact))
-            ->response();
-        // ->setStatusCode(201)
+            ->response()
+            ->setStatusCode(201);
     }
 
     public function show(Contact $contact)
@@ -115,11 +115,10 @@ class ContactController extends Controller
         return new ContactResource($contact);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+
+        return response()->json(null, 204);
     }
 }
