@@ -26,7 +26,7 @@ class Handler extends ExceptionHandler
         ) {
             if ($request->is('api/*')) {
                 return response()->json([
-                    'message' => 'お問い合わせが見つかりませんでした。',
+                    'error' => 'お問い合わせが見つかりませんでした。',
                 ], 404);
             }
         });
