@@ -54,12 +54,14 @@ docker run --rm \
 ```
 ### env設定について
 Laravel Sailを使用しているため、以下のように設定してください。
+```bash
 DB_CONNECTION=mysql
 DB_HOST=mysql
 DB_PORT=3306
 DB_DATABASE=laravel
 DB_USERNAME=sail
 DB_PASSWORD=password
+```
 ### Sail起動
 ```bash
 ./vendor/bin/sail up -d
