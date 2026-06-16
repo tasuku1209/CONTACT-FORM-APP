@@ -54,7 +54,7 @@ docker run --rm \
 ```
 ### env設定について
 Laravel Sailを使用しているため、以下のように設定してください。
-```bash
+```env
 DB_CONNECTION=mysql
 DB_HOST=mysql
 DB_PORT=3306
@@ -66,14 +66,6 @@ DB_PASSWORD=password
 ```bash
 ./vendor/bin/sail up -d
 ```
-### NPM依存パッケージのインストール
-```bash
-./vendor/bin/sail npm install
-```
-### Vite開発サーバーの起動
-```bash
-./vendor/bin/sail npm run dev
-```
 ### key生成
 ```bash
 ./vendor/bin/sail artisan key:generate
@@ -81,6 +73,14 @@ DB_PASSWORD=password
 ### migrate
 ```bash
 ./vendor/bin/sail artisan migrate:fresh --seed
+```
+### NPM依存パッケージのインストール
+```bash
+./vendor/bin/sail npm install
+```
+### Vite開発サーバーの起動
+```bash
+./vendor/bin/sail npm run dev
 ```
 ### アクセスURL
 http://localhost
