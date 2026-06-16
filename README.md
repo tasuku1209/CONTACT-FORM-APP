@@ -2,6 +2,8 @@
 ## 概要
 - お問い合わせフォームおよび管理者向け管理システムを実装したアプリケーションです。
 
+---
+
 ### 主な機能
 - お問い合わせフォーム
 - お問い合わせ確認画面
@@ -17,8 +19,12 @@
 - バリデーション機能
 - テスト実装
 
+---
+
 ## ER図
 ![ER図](docs/ER.drawio.png)
+
+---
 
 ## 環境構築手順
 ### 前提環境
@@ -26,26 +32,42 @@
 - Git
 
 ### リポジトリのクローン
+```bash
 git clone https://github.com/tasuku1209/CONTACT-FORM-APP.git
+```
 ### プロジェクトリポジトリへ移動
+```bash
 cd CONTACT-FORM-APP
+```
 ### .envファイル作成
+```bash
 cp .env.example .env
+```
 ### Composer install
+```bash
 docker run --rm \
--u "$(id -u):$(id -g)" \
--v $(pwd):/var/www/html \
--w /var/www/html \
-laravelsail/php82-composer:latest \
-composer install --ignore-platform-reqs
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php82-composer:latest \
+    composer install --ignore-platform-reqs
+```
 ### Sail起動
+```bash
 ./vendor/bin/sail up -d
+```
 ### key生成
+```bash
 ./vendor/bin/sail artisan key:generate
+```
 ### migrate
+```bash
 ./vendor/bin/sail artisan migrate:fresh --seed
+```
 ### アクセスURL
 http://localhost
+
+---
 
 ## 使用技術
 - PHP 8.x
@@ -55,6 +77,9 @@ http://localhost
 - Docker
 - Laravel Sail
 - PHPUnit
+
+---
+
 ## APIエンドポイント一覧
 | メソッド | パス | 概要 |
 |---|---|---|
@@ -63,7 +88,13 @@ http://localhost
 | POST | /api/v1/contacts | お問い合わせ作成 |
 | PUT | /api/v1/contacts/{contact} | お問い合わせ更新 |
 | DELETE | /api/v1/contacts/{contact} | お問い合わせ削除 |
+
+---
+
 ## 開発環境URL
 http://localhost
+
+---
+
 ## 作成者
 - 高津　丞（たかつ　たすく）
