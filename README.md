@@ -52,6 +52,14 @@ docker run --rm \
     laravelsail/php82-composer:latest \
     composer install --ignore-platform-reqs
 ```
+### env設定について
+Laravel Sailを使用しているため、以下のように設定してください。
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=sail
+DB_PASSWORD=password
 ### Sail起動
 ```bash
 ./vendor/bin/sail up -d
