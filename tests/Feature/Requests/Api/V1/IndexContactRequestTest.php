@@ -36,7 +36,7 @@ class IndexContactRequestTest extends TestCase
         ]);
 
         // Act
-        $response = $this->getJson('/api/v1/contacts?'.http_build_query([
+        $response = $this->getJson('/api/v1/contacts?' . http_build_query([
             'keyword' => '太郎',
             'gender' => 1,
             'category_id' => $categoryA->id,
@@ -131,7 +131,7 @@ class IndexContactRequestTest extends TestCase
     {
         $keyword = str_repeat('a', 256);
 
-        $response = $this->getJson('/api/v1/contacts?keyword='.$keyword);
+        $response = $this->getJson('/api/v1/contacts?keyword=' . $keyword);
 
         $response
             ->assertStatus(422)
