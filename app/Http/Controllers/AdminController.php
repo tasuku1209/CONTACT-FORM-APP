@@ -15,7 +15,7 @@ class AdminController extends Controller
             ->with(['category', 'tags'])
             ->keyword($request->keyword)
             ->gender($request->gender)
-            ->category($request->category_id)
+            ->categoryFilter($request->category_id)
             ->date($request->date)
             ->orderBy('created_at', 'desc')
             ->paginate(7)
