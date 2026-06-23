@@ -56,7 +56,7 @@ class Contact extends Model
         $query->where('gender', $gender);
     }
 
-    public function scopeCategory($query, $categoryId)
+    public function scopeCategoryFilter($query, $categoryId)
     {
         if (!$categoryId) {
             return;

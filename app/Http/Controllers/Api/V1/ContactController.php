@@ -19,7 +19,7 @@ class ContactController extends Controller
             ->with(['category', 'tags'])
             ->keyword($request->keyword)
             ->gender($request->gender)
-            ->category($request->category_id)
+            ->categoryFilter($request->category_id)
             ->date($request->date)
             ->latest()
             ->paginate($perPage);
