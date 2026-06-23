@@ -64,31 +64,12 @@ class ContactController extends Controller
 
     public function export(ExportContactRequest $request): StreamedResponse
     {
-        $query = Contact::query()->with('category');
-
-        if ($request->filled('keyword')) {
-            $keyword = $request->keyword;
-
-            $query->where(function ($q) use ($keyword) {
-                $q->where('first_name', 'like', "%{$keyword}%")
-                    ->orWhere('last_name', 'like', "%{$keyword}%")
-                    ->orWhere('email', 'like', "%{$keyword}%");
-            });
-        }
-
-        if ($request->filled('gender') && $request->gender != 0) {
-            $query->where('gender', $request->gender);
-        }
-
-        if ($request->filled('category_id')) {
-            $query->where('category_id', $request->category_id);
-        }
-
-        if ($request->filled('date')) {
-            $query->whereDate('created_at', $request->date);
-        }
-
-        $contacts = $query
+        $contacts = Contact::query()
+            ->with('category')
+            ->keyword($request->keyword)
+            ->gender($request->gender)
+            ->categoryFilter($request->category_id)
+            ->date($request->date)
             ->orderBy('created_at', 'desc')
             ->get();
 
@@ -127,7 +108,7 @@ class ContactController extends Controller
 
                 fputcsv($stream, [
                     $contact->id,
-                    $contact->last_name.' '.$contact->first_name,
+                    $contact->last_name . ' ' . $contact->first_name,
                     $gender,
                     $contact->email,
                     $contact->tel,
@@ -140,7 +121,6 @@ class ContactController extends Controller
             }
 
             fclose($stream);
-
         }, 'contacts.csv', [
             'Content-Type' => 'text/csv',
         ]);
